@@ -1,2 +1,4 @@
 ---
 # vars file for ansible-playbook-telegraf
+#
+telegraf_version: latest
