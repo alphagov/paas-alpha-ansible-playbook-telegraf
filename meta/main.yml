@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: alphagov
+  company: GDS
+  description: Installs and setup Telegraf stats collector
+  license: MIT
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+  - system
+  - monitoring
+dependencies: []

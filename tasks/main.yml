@@ -1,0 +1,17 @@
+---
+# tasks file for ansible-playbook-telegraf
+#
+
+- name: fetch telegraf installation package
+  get_url: url=http://get.influxdb.org/telegraf/telegraf_{{ telegraf_version }}_amd64.deb dest=/tmp/telegraf_{{ telegraf_version }}_amd64.deb mode=0440
+
+- name: install telegraf package
+  apt: deb=/tmp/telegraf_{{ telegraf_version }}_amd64.deb
+
+- name: start telegraf service and ensure that it is enabled
+  service: name=telegraf enabled=yes state=started
+
+- name: Generate telegraf config from template
+  template: src=telegraf.conf.j2 dest=/etc/opt/influxdb/telegraf.conf
+  notify:
+    - restart telegraf
