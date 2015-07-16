@@ -5,6 +5,9 @@ galaxy_info:
   description: Installs and setup Telegraf stats collector
   license: MIT
   platforms:
+  - name: EL
+    versions:
+    - all
   - name: Ubuntu
     versions:
     - all
