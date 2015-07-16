@@ -12,6 +12,6 @@
   service: name=telegraf enabled=yes state=started
 
 - name: Generate telegraf config from template
-  template: src=telegraf.conf.j2 dest=/etc/opt/influxdb/telegraf.conf
+  template: src=telegraf.conf.j2 dest=/etc/opt/telegraf/telegraf.conf
   notify:
     - restart telegraf
