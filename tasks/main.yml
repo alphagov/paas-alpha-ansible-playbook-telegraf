@@ -10,6 +10,11 @@
   apt: deb=/tmp/telegraf_{{ telegraf_version }}_amd64.deb
   when: ansible_os_family == "Debian"
 
+- name: Installing packages required for telegraf
+  yum: name={{ item }} state=installed
+  with_items:
+    - libselinux-python
+
 - name: fetch telegraf installation package | RedHat
   get_url: url=http://get.influxdb.org/telegraf/telegraf-{{ telegraf_version }}-1.x86_64.rpm dest=/tmp/telegraf_{{ telegraf_version }}-1.x86_64.rpm mode=0440
   when: ansible_os_family == "RedHat"
@@ -22,6 +27,6 @@
   service: name=telegraf enabled=yes state=started
 
 - name: Generate telegraf config from template
-  template: src=telegraf.conf.j2 dest=/etc/opt/influxdb/telegraf.conf
+  template: src=telegraf.conf.j2 dest=/etc/opt/telegraf/telegraf.conf
   notify:
     - restart telegraf
