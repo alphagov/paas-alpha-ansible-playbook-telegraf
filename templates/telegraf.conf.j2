@@ -39,8 +39,8 @@ password = "{{ influxdb_pass }}"
 
 # Tags can also be specified via a normal map, but only one form at a time:
 
-# [influxdb.tags]
-# dc = "us-east-1"
+[influxdb.tags]
+{{ influxdb_tags }}
 
 # Configuration for telegraf itself
 # [agent]
