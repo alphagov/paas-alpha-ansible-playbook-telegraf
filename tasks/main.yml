@@ -27,7 +27,12 @@
 - name: start telegraf service and ensure that it is enabled
   service: name=telegraf enabled=yes state=started
 
+- set_fact: config_template="telegraf.conf.j2"
+
+- set_fact: config_template="telegraf.conf-0.2.0.j2"
+  when: "{{ telegraf_version | version_compare('0.2.0', '>=') }}"
+
 - name: Generate telegraf config from template
-  template: src=telegraf.conf.j2 dest=/etc/opt/telegraf/telegraf.conf
+  template: src="{{ config_template }}" dest=/etc/opt/telegraf/telegraf.conf
   notify:
     - restart telegraf
