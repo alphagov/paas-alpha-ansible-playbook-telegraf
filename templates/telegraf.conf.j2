@@ -40,7 +40,11 @@ password = "{{ influxdb_pass }}"
 # Tags can also be specified via a normal map, but only one form at a time:
 
 [influxdb.tags]
-{{ influxdb_tags }}
+{% if influxdb_tags is defined %}
+{% for tag_name, value in influxdb_tags.iteritems() %}
+{{ tag_name }} = "{{ value }}"
+{% endfor %}
+{% endif %}
 
 # Configuration for telegraf itself
 # [agent]
