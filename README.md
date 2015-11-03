@@ -16,6 +16,14 @@ influxdb_pass: somepassword
 
 You will want to override these role variables within your playbooks.
 
+You can associate tags with the server and they will be recognised by influxdb and grafana. Example:
+
+```
+influxdb_tags:
+	role: web-server
+	region: eu-west
+```
+
 ### Usage
 
 ```
